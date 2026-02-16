@@ -8,10 +8,11 @@
 </head>
 
 <body>
+
   <header>
     <h1>Ella Bourassa</h1>
     <p class="subtitle">
-      Cognitive Science & CS • Software / ML-focused developer
+      Cognitive Science & Computer Science • Software & ML Developer
     </p>
     <nav>
       <a href="#projects">Projects</a>
@@ -21,58 +22,107 @@
   </header>
 
   <main>
+
+    <!-- ================= PROJECTS ================= -->
     <section id="projects">
       <h2>Projects</h2>
 
-      <div class="project-card">
-        <h3>SARSA Pong Agent</h3>
-        <p>
-          Implemented a reinforcement learning agent in PyTorch to learn Atari Pong
-          using on-policy SARSA with frame stacking and epsilon scheduling.
-        </p>
-        <p class="tech">Python • PyTorch • Gymnasium</p>
-        <a href="https://github.com/ellab130/Atari-Pong-Project/tree/team2" target="_blank" rel="noopener">
-        GitHub ↗
-        </a>
-          <a>View PDF and Project Report &rarr;</a>
-      </div>
+      <div class="projects-grid">
 
-      <div class="project-card">
-        <h3>-</h3>
-        <p>
-          Built a C++ program to multiply upper-triangular matrices without ever
-          expanding them in memory.
-        </p>
-        <p class="tech">C++ • Memory Optimization</p>
-        <a href="#" target="_blank">View on GitHub →</a>
-        <a href="files/sarsa-report.pdf" target="_blank">Report (PDF) →</a>
- ·
-        <a href="files/sarsa-slides.pdf" target="_blank">Slides →</a>
+        <!-- SARSA PROJECT -->
+        <div class="project-card">
+          <h3>SARSA Pong Agent</h3>
+          <p>
+            Built a PyTorch reinforcement learning agent to learn Atari Pong
+            using on-policy SARSA with frame stacking, ε-greedy exploration,
+            and custom preprocessing for stable training.
+          </p>
+          <p class="tech">Python • PyTorch • Gymnasium • Reinforcement Learning</p>
+
+          <div class="project-actions">
+            <a class="btn"
+               href="https://github.com/ellab130/Atari-Pong-Project/tree/team2"
+               target="_blank"
+               rel="noopener">
+              GitHub ↗
+            </a>
+
+            <a class="btn ghost"
+               href="files/Group6_Report.pdf"
+               target="_blank"
+               rel="noopener">
+              Report (PDF) ↗
+            </a>
+
+            <a class="btn ghost"
+               href="files/Group6_Presentation.pdf"
+               target="_blank"
+               rel="noopener">
+              Slides (PDF) ↗
+            </a>
+          </div>
+        </div>
+
+        <!-- C++ PROJECT -->
+        <div class="project-card">
+          <h3>Upper-Triangular Matrix Multiplication</h3>
+          <p>
+            Implemented a memory-efficient C++ algorithm for multiplying
+            upper-triangular matrices without expanding them in memory,
+            improving space efficiency and computational performance.
+          </p>
+          <p class="tech">C++ • Data Structures • Memory Optimization</p>
+
+          <div class="project-actions">
+            <a class="btn"
+               href="#"
+               target="_blank"
+               rel="noopener">
+              GitHub ↗
+            </a>
+          </div>
+        </div>
 
       </div>
     </section>
 
+    <!-- ================= ABOUT ================= -->
     <section id="about">
       <h2>About Me</h2>
       <p>
         I’m a UC Davis student studying Cognitive Science with a computational focus.
-        I’m interested in machine learning, human-centered systems, and building
-        software that’s both technically solid and easy to use.
+        I’m passionate about machine learning, human-centered systems, and building
+        software that is both technically rigorous and thoughtfully designed.
       </p>
     </section>
 
+    <!-- ================= CONTACT ================= -->
     <section id="contact">
       <h2>Contact</h2>
-      <p>Email: <a href="mailto:ella_bourassa@yahoo.com@example.com">ellabourassa@yahoo.com</a></p>
+
       <p>
-        <a href="https://github.com/ellab130" target="_blank">GitHub</a> ·
-        <a href="https://www.linkedin.com/in/ella-bourassa-144b3130a" target="_blank">LinkedIn</a>
+        Email:
+        <a href="mailto:ellabourassa@yahoo.com">
+          ellabourassa@yahoo.com
+        </a>
+      </p>
+
+      <p>
+        <a href="https://github.com/ellab130" target="_blank" rel="noopener">
+          GitHub
+        </a>
+        ·
+        <a href="https://www.linkedin.com/in/ella-bourassa-144b3130a" target="_blank" rel="noopener">
+          LinkedIn
+        </a>
       </p>
     </section>
+
   </main>
 
   <footer>
     <p>© 2026 Ella Bourassa</p>
   </footer>
+
 </body>
 </html>
