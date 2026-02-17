@@ -3,196 +3,167 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Ella Bourassa | Software & ML Developer</title>
+  <title>Ella Bourassa | Cognitive Science @ UC Davis | Software & ML Developer</title>
   <link rel="stylesheet" href="style.css" />
+
+  <!-- GUARANTEED SPACING FIX (move into style.css later if you want) -->
+  <style>
+    body{
+      padding-left: 4.25rem;
+      padding-right: 4.25rem;
+    }
+    @media (max-width: 700px){
+      body{
+        padding-left: 1.25rem;
+        padding-right: 1.25rem;
+      }
+    }
+  </style>
 </head>
 
 <body>
 
-  <!-- ================= HEADER ================= -->
-  <header>
-    <h1>Ella Bourassa</h1>
-    <p class="subtitle">
-      Cognitive Science (Computational Emphasis) • Software & ML Developer
-    </p>
+  <header class="site-header">
+    <div class="container">
+      <h1>Ella Bourassa</h1>
+      <p class="subtitle">Cognitive Science (Computational Emphasis) • Software &amp; ML</p>
 
-    <nav>
-      <a href="#projects">Projects</a>
-      <a href="#skills">Skills</a>
-      <a href="#resume">Resume</a>
-      <a href="#contact">Contact</a>
-    </nav>
+      <nav class="site-nav" aria-label="Primary">
+        <a href="#projects">Projects</a>
+        <a href="#skills">Skills</a>
+        <a href="#resume">Resume</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
   </header>
 
-  <main>
+  <main class="container">
 
-    <!-- ================= PROJECTS ================= -->
-    <section id="projects">
-      <h2>Projects</h2>
+    <section id="projects" class="section">
+      <div class="section-head">
+        <h2>Projects</h2>
+      </div>
 
-      <div class="projects-grid">
+      <div class="project-list">
 
-        <!-- SARSA PROJECT -->
-        <div class="project-card">
-          <h3>SARSA Pong Agent</h3>
-          <p>
-            Built a PyTorch reinforcement learning agent to learn Atari Pong
-            using on-policy SARSA with frame stacking, ε-greedy exploration,
-            and custom preprocessing for stable training.
-          </p>
-
-          <p class="tech">
-            Python • PyTorch • Gymnasium • Reinforcement Learning
-          </p>
-
-          <div class="project-actions">
-            <a class="btn"
-               href="https://github.com/ellab130/Atari-Pong-Project/tree/team2"
-               target="_blank"
-               rel="noopener">
-              GitHub ↗
-            </a>
-
-            <a class="btn ghost"
-               href="files/Group6_Report.pdf"
-               target="_blank"
-               rel="noopener">
-              Report ↗
-            </a>
-
-            <a class="btn ghost"
-               href="files/Group6_Presentation.pdf"
-               target="_blank"
-               rel="noopener">
-              Slides ↗
-            </a>
+        <article class="project">
+          <div class="project-left">
+            <h3>SARSA Pong Agent</h3>
+            <p class="meta">Python • PyTorch • Gymnasium</p>
           </div>
+
+          <div class="project-right">
+            <p>
+              Implemented an on-policy SARSA agent for Atari Pong with frame stacking, ε-greedy exploration,
+              and a preprocessing pipeline for stable learning.
+            </p>
+
+            <div class="links">
+              <a href="https://github.com/ellab130/Atari-Pong-Project/tree/team2" target="_blank" rel="noopener">GitHub</a>
+              <span class="sep">/</span>
+              <a href="files/Group6_Report.pdf" target="_blank" rel="noopener">Report (PDF)</a>
+              <span class="sep">/</span>
+              <a href="files/Group6_Presentation.pdf" target="_blank" rel="noopener">Slides (PDF)</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="project">
+          <div class="project-left">
+            <h3>Upper-Triangular Matrix Multiplication</h3>
+            <p class="meta">C++ • Memory Optimization</p>
+          </div>
+
+          <div class="project-right">
+            <p>
+              Built a space-efficient multiplication routine for upper-triangular matrices without expanding
+              them into dense form, reducing memory overhead while preserving correctness.
+            </p>
+
+            <div class="links">
+              <a href="#" target="_blank" rel="noopener">GitHub</a>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <section id="skills" class="section">
+      <div class="section-head">
+        <h2>Skills</h2>
+      </div>
+
+      <div class="two-col">
+
+        <div class="group">
+          <h3>Languages</h3>
+          <ul class="clean-list">
+            <li>Python</li>
+            <li>C / C++</li>
+            <li>x86 Assembly (AT&amp;T syntax)</li>
+            <li>HTML / CSS</li>
+          </ul>
         </div>
 
-        <!-- C++ PROJECT -->
-        <div class="project-card">
-          <h3>Upper-Triangular Matrix Multiplication</h3>
-          <p>
-            Implemented a memory-efficient C++ algorithm for multiplying
-            upper-triangular matrices without expanding them in memory,
-            improving space efficiency and performance.
-          </p>
+        <div class="group">
+          <h3>ML</h3>
+          <ul class="clean-list">
+            <li>PyTorch</li>
+            <li>Reinforcement learning (SARSA; Atari)</li>
+            <li>Experimentation &amp; evaluation</li>
+            <li>Linear algebra &amp; probability foundations</li>
+          </ul>
+        </div>
 
-          <p class="tech">
-            C++ • Data Structures • Memory Optimization
-          </p>
-
-          <div class="project-actions">
-            <a class="btn"
-               href="#"
-               target="_blank"
-               rel="noopener">
-              GitHub ↗
-            </a>
-          </div>
+        <div class="group">
+          <h3>Systems</h3>
+          <ul class="clean-list">
+            <li>Data structures &amp; algorithm analysis</li>
+            <li>Memory management &amp; low-level programming</li>
+            <li>Computer organization</li>
+            <li>UNIX tools &amp; command-line workflows</li>
+          </ul>
         </div>
 
       </div>
     </section>
 
-    <!-- ================= SKILLS ================= -->
-<section id="skills">
-  <h2>Skills</h2>
+    <section id="resume" class="section">
+      <div class="section-head">
+        <h2>Resume</h2>
+      </div>
 
-  <div class="skills-grid">
-
-    <div class="skills-card">
-      <h3>Programming Languages</h3>
-      <ul>
-        <li>Python</li>
-        <li>C / C++</li>
-        <li>x86 Assembly (AT&amp;T syntax)</li>
-        <li>HTML / CSS</li>
-      </ul>
-    </div>
-
-    <div class="skills-card">
-      <h3>Machine Learning</h3>
-      <ul>
-        <li>PyTorch</li>
-        <li>Reinforcement Learning (SARSA, Atari environments)</li>
-        <li>Data analysis & experimentation</li>
-        <li>Linear algebra & probability foundations</li>
-      </ul>
-    </div>
-
-    <div class="skills-card">
-      <h3>Systems & Computer Architecture</h3>
-      <ul>
-        <li>Data structures & algorithm analysis</li>
-        <li>Memory management & low-level programming</li>
-        <li>Computer organization</li>
-        <li>UNIX tools & command-line workflows</li>
-      </ul>
-    </div>
-
-  </div>
-
-  <div class="skill-pills">
-    <span class="pill">Reinforcement Learning</span>
-    <span class="pill">Data Structures</span>
-    <span class="pill">Algorithms</span>
-    <span class="pill">Systems Programming</span>
-    <span class="pill">Experimentation</span>
-    <span class="pill">Human-Centered Systems</span>
-  </div>
-</section>
-
-
-    <!-- ================= RESUME ================= -->
-    <section id="resume">
-      <h2>Resume</h2>
-
-      <div class="cv-card">
-        <p>
-          Download my employment-focused resume (plus a longer coursework CV if helpful).
-        </p>
-
-        <div class="project-actions">
-          <a class="btn"
-             href="files/Resume_Web.pdf"
-             target="_blank"
-             rel="noopener">
-            Resume ↗
-          </a>
-
-          <a class="btn ghost"
-             href="files/CV_Web.pdf"
-             target="_blank"
-             rel="noopener">
-            Coursework CV ↗
-          </a>
-        </div>
+      <div class="links">
+        <a href="files/Resume_Web.pdf" target="_blank" rel="noopener">Resume (PDF)</a>
+        <span class="sep">/</span>
+        <a href="files/CV_Web.pdf" target="_blank" rel="noopener">Coursework CV (PDF)</a>
       </div>
     </section>
 
-    <!-- ================= CONTACT ================= -->
-    <section id="contact">
-      <h2>Contact</h2>
+    <section id="contact" class="section">
+      <div class="section-head">
+        <h2>Contact</h2>
+        
+      </div>
 
-      <p>
-        Email:
-        <a href="mailto:ellabourassa@yahoo.com">
-          ellabourassa@yahoo.com
-        </a>
+      <p class="contact-line">
+        <a href="mailto:ellabourassa@yahoo.com">ellabourassa@yahoo.com</a>
       </p>
 
-      <p>
+      <div class="links">
         <a href="https://github.com/ellab130" target="_blank" rel="noopener">GitHub</a>
-        ·
+        <span class="sep">/</span>
         <a href="https://www.linkedin.com/in/ella-bourassa-144b3130a" target="_blank" rel="noopener">LinkedIn</a>
-      </p>
+      </div>
     </section>
 
   </main>
 
-  <footer>
-    <p>© 2026 Ella Bourassa</p>
+  <footer class="site-footer">
+    <div class="container">
+      <p>© 2026 Ella Bourassa</p>
+    </div>
   </footer>
 
 </body>

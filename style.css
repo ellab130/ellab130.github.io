@@ -1,8 +1,5 @@
 /* =========================
    Fonts: Karrik (title only)
-   Files you have:
-   - Karrik-Regular.woff2/.woff
-   - Karrik-Italic.woff2/.woff
    ========================= */
 @font-face {
   font-family: "Karrik";
@@ -23,327 +20,271 @@
 }
 
 /* =========================
-   Theme tokens (Clean light)
+   Minimal editorial tokens
    ========================= */
-:root {
-  --bg: #fbfbfa;
-  --surface: #ffffff;
-  --surface-2: rgba(255, 255, 255, 0.86);
+:root{
+  --bg: #fcfaf4;               /* clean white */
+  --text: #111111;
+  --muted: #5f6368;            /* calm gray */
+  --faint: #8a8f98;
 
-  --text: #141414;
-  --muted: #5a5a5a;
-  --faint: #7a7a7a;
+  --rule: rgba(17,17,17,0.10); /* thin dividers */
+  --accent: #2D68C4;           /* your blue */
 
-  --border: rgba(20, 20, 20, 0.10);
-  --border-2: rgba(20, 20, 20, 0.07);
-
-  --accent: #2f6fff;
-  --accent-soft: rgba(47, 111, 255, 0.10);
-
-  --radius: 14px;
-  --shadow: 0 18px 50px rgba(0, 0, 0, 0.08);
-  --shadow-soft: 0 10px 25px rgba(0, 0, 0, 0.06);
-
-  --max: 980px;
+  --max: 900px;
 }
 
 /* =========================
-   Base + reset
+   Reset + base
    ========================= */
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
 html { scroll-behavior: smooth; }
 
-body {
+body{
+  background: var(--bg);
+  color: var(--text);
   font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
   line-height: 1.7;
-  color: var(--text);
-  background:
-    radial-gradient(800px 380px at 15% -10%, rgba(47,111,255,0.10), transparent 60%),
-    radial-gradient(700px 420px at 90% 0%, rgba(0,0,0,0.05), transparent 55%),
-    var(--bg);
+
+  /* THIS is the guaranteed left/right margin */
+  padding-left: 4.25rem;
+  padding-right: 4.25rem;
+
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
 }
 
-/* Keep text from becoming too wide on big screens */
-main, header, footer { max-width: var(--max); margin-left: auto; margin-right: auto; }
+.container{
+  max-width: var(--max);
+  margin: 1 auto;
+  padding: 0 4.25rem;
+}
 
 /* =========================
    Header
    ========================= */
-header {
-  margin-top: 1.25rem;
-  padding: 3.25rem 1.25rem 2.2rem;
-  text-align: center;
-
-  background: var(--surface-2);
-  border: 1px solid var(--border-2);
-  border-radius: calc(var(--radius) + 6px);
-  box-shadow: var(--shadow);
-  backdrop-filter: blur(8px);
+.site-header{
+  padding: 3.4rem 0 1.6rem;
+  border-bottom: 1px solid var(--rule);
 }
 
-header h1 {
+.site-header h1{
   font-family: "Karrik", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
-  font-weight: 400;                 /* IMPORTANT: you don’t have bold files */
-  font-size: clamp(2.2rem, 3.2vw, 3rem);
-  letter-spacing: -0.04em;
-  margin-bottom: 0.5rem;
+  font-weight: 400;
+  letter-spacing: -0.05em;
+  font-size: clamp(2.5rem, 4vw, 3.25rem);
 }
 
-.subtitle {
+.subtitle{
+  margin-top: 0.55rem;
   color: var(--muted);
-  margin-bottom: 1rem;
-  font-size: 1.05rem;
+  max-width: 70ch;
 }
 
-nav {
-  display: inline-flex;
+.site-nav{
+  margin-top: 1.2rem;
+  display: flex;
   flex-wrap: wrap;
-  justify-content: center;
-  gap: 0.6rem;
+  gap: 1rem;
 }
 
-nav a {
-  text-decoration: none;
+.site-nav a{
   color: var(--text);
+  text-decoration: none;
+  padding-bottom: 0.12rem;
+  border-bottom: 1px solid rgba(45,104,196,0.25);
+  transition: border-color 160ms ease, color 160ms ease;
   font-weight: 600;
   font-size: 0.95rem;
-
-  padding: 0.55rem 0.95rem;
-  border: 1px solid var(--border-2);
-  border-radius: 999px;
-  background: rgba(255, 255, 255, 0.7);
-  transition: transform 140ms ease, background 140ms ease, border-color 140ms ease;
 }
 
-nav a:hover {
-  transform: translateY(-1px);
-  border-color: var(--border);
-  background: rgba(255, 255, 255, 0.95);
+.site-nav a:hover{
+  color: var(--accent);
+  border-bottom-color: rgba(45,104,196,0.70);
 }
 
 /* =========================
-   Main layout + typography
+   Sections
    ========================= */
-main { padding: 2.5rem 1.25rem 3rem; }
-
-section { margin-bottom: 3.25rem; }
-
-h2 {
-  font-size: 1.65rem;
-  letter-spacing: -0.02em;
-  margin-bottom: 1rem;
+.section{
+  padding: 2.4rem 0;
+  border-bottom: 1px solid var(--rule);
 }
 
-p { color: var(--muted); }
+.section:last-of-type{
+  border-bottom: none;
+}
 
-a { color: var(--accent); text-underline-offset: 3px; }
-a:hover { text-decoration-thickness: 2px; }
+.section-head{
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1.2rem;
+}
 
-/* Focus states */
-a:focus-visible, button:focus-visible {
-  outline: 3px solid rgba(47, 111, 255, 0.25);
+h2{
+  font-family: "Karrik", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  font-size: 1.35rem;
+}
+
+.section-note{
+  color: var(--faint);
+  font-size: 0.95rem;
+  text-align: right;
+}
+
+p{
+  color: var(--muted);
+  max-width: 75ch;
+}
+
+/* =========================
+   Links (editorial)
+   ========================= */
+a{
+  color: var(--text);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 4px;
+  text-decoration-color: rgba(45,104,196,0.35);
+}
+
+a:hover{
+  color: var(--accent);
+  text-decoration-thickness: 2px;
+  text-decoration-color: rgba(45,104,196,0.70);
+}
+
+.links{
+  margin-top: 0.85rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.55rem;
+  color: var(--faint);
+}
+
+.sep{
+  color: var(--faint);
+  user-select: none;
+}
+
+/* Focus */
+a:focus-visible{
+  outline: 3px solid rgba(45, 104, 196, 0.20);
   outline-offset: 3px;
   border-radius: 10px;
 }
 
 /* =========================
-   Projects grid + cards
+   Projects (no cards, columns)
    ========================= */
-.projects-grid {
+.project-list{
   display: grid;
-  gap: 1.15rem;
+  gap: 0;
 }
 
-@media (min-width: 880px) {
-  .projects-grid { grid-template-columns: 1fr 1fr; }
+.project{
+  padding: 1.35rem 0;
+  border-top: 1px solid var(--rule);
 }
 
-.project-card {
-  background: rgba(255, 255, 255, 0.92);
-  border: 1px solid var(--border-2);
-  border-radius: var(--radius);
-  padding: 1.4rem;
-  box-shadow: var(--shadow-soft);
-  transition: transform 160ms ease, box-shadow 160ms ease, border-color 160ms ease;
+.project:first-child{
+  border-top: none;
+  padding-top: 0.25rem;
 }
 
-.project-card:hover {
-  transform: translateY(-2px);
-  border-color: var(--border);
-  box-shadow: 0 16px 45px rgba(0,0,0,0.10);
-}
-
-.project-card h3 {
-  margin-bottom: 0.4rem;
-  color: var(--text);
-  font-size: 1.2rem;
-  letter-spacing: -0.01em;
-}
-
-.project-card .tech {
-  color: var(--faint);
-  font-size: 0.95rem;
-  margin-top: 0.6rem;
-}
-
-/* =========================
-   Buttons (with shape ideas)
-   ========================= */
-/* Base actions container */
-.project-actions {
-  margin-top: 0.95rem;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.6rem;
-}
-
-/* Default pill buttons */
-.btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-
-  padding: 0.55rem 0.95rem;
-  border-radius: 999px;         /* pill */
-  font-weight: 700;
-  font-size: 0.95rem;
-  text-decoration: none;
-
-  background: var(--accent);
-  color: white;
-  border: 1px solid rgba(0,0,0,0.06);
-  transition: transform 140ms ease, filter 140ms ease, background 140ms ease;
-}
-
-.btn:hover { transform: translateY(-1px); filter: brightness(1.03); }
-
-.btn.ghost {
-  background: transparent;
-  color: var(--text);
-  border: 1px solid var(--border-2);
-}
-
-.btn.ghost:hover {
-  background: var(--accent-soft);
-  border-color: rgba(47,111,255,0.20);
-}
-
-/* ---- Shape variants (pick one) ---- */
-/* 1) Soft rounded rectangle */
-.btn.shape-soft { border-radius: 14px; }
-
-/* 2) Squircle-ish (more “designed”) */
-.btn.shape-squircle { border-radius: 18px; }
-
-/* 3) Sharp / editorial */
-.btn.shape-sharp { border-radius: 10px; }
-
-/* 4) Outline + subtle underline vibe */
-.btn.shape-underline {
-  border-radius: 999px;
-  background: transparent;
-  color: var(--text);
-  border: 1px solid transparent;
-  box-shadow: none;
-  padding: 0.25rem 0;
-  font-weight: 700;
-  border-bottom: 2px solid rgba(47,111,255,0.35);
-}
-.btn.shape-underline:hover { border-bottom-color: rgba(47,111,255,0.75); transform: none; }
-
-/* =========================
-   Skills + CV components
-   (Add these sections in HTML whenever)
-   ========================= */
-
-/* “Skill pills” row */
-.skill-pills {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.55rem;
-  margin-top: 0.9rem;
-}
-
-.pill {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.35rem;
-
-  padding: 0.45rem 0.75rem;
-  border-radius: 999px;
-  background: rgba(255,255,255,0.85);
-  border: 1px solid var(--border-2);
-  color: var(--text);
-  font-weight: 600;
-  font-size: 0.92rem;
-}
-
-/* Skills grid (categories) */
-.skills-grid {
+.project{
   display: grid;
   gap: 1rem;
-  margin-top: 1rem;
 }
 
-@media (min-width: 880px) {
-  .skills-grid { grid-template-columns: 1fr 1fr; }
+@media (min-width: 900px){
+  .project{
+    grid-template-columns: 280px 1fr;
+    gap: 2rem;
+  }
 }
 
-.skills-card {
-  background: rgba(255,255,255,0.92);
-  border: 1px solid var(--border-2);
-  border-radius: var(--radius);
-  padding: 1.2rem;
-  box-shadow: var(--shadow-soft);
-}
-
-.skills-card h3 {
+.project-left h3{
+  font-size: 1.05rem;
+  letter-spacing: -0.01em;
   color: var(--text);
-  font-size: 1.1rem;
+}
+
+.meta{
+  margin-top: 0.35rem;
+  color: var(--faint);
+  font-size: 0.95rem;
+}
+
+.project-right p{
+  color: var(--muted);
+}
+
+/* =========================
+   Skills (clean columns)
+   ========================= */
+.two-col{
+  display: grid;
+  gap: 1.25rem;
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 900px){
+  .two-col{
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.75rem;
+  }
+}
+
+
+
+
+
+.group h3{
+  font-size: 1.0rem;
+  color: var(--text);
   margin-bottom: 0.6rem;
   letter-spacing: -0.01em;
 }
 
-.skills-card ul {
+.clean-list{
   list-style: none;
   display: grid;
-  gap: 0.4rem;
+  gap: 0.35rem;
 }
 
-.skills-card li { color: var(--muted); }
-
-/* CV download card */
-.cv-card {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1rem;
-
-  background: rgba(255,255,255,0.92);
-  border: 1px solid var(--border-2);
-  border-radius: var(--radius);
-  padding: 1.2rem;
-  box-shadow: var(--shadow-soft);
+.clean-list li{
+  color: var(--muted);
 }
-
-.cv-card p { margin: 0; }
+@media (max-width: 700px){
+  body{
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+  }
+}
+/* =========================
+   Contact
+   ========================= */
+.contact-line{
+  margin-top: 0.15rem;
+  font-size: 1.02rem;
+}
 
 /* =========================
    Footer
    ========================= */
-footer {
-  margin-bottom: 2rem;
-  text-align: center;
-  padding: 1.5rem 1.25rem;
-  font-size: 0.95rem;
+.site-footer{
+  padding: 2.2rem 0 2.4rem;
   color: var(--faint);
 }
 
-/* Mobile tweaks */
-@media (max-width: 520px) {
-  header { padding: 2.6rem 1rem 1.8rem; }
-  .project-card { padding: 1.2rem; }
+.site-footer p{
+  color: var(--faint);
+  font-size: 0.95rem;
 }
