@@ -6,7 +6,7 @@
   <title>Ella Bourassa | Cognitive Science @ UC Davis | Software & ML Developer</title>
   <link rel="stylesheet" href="style.css" />
 
-  <!-- GUARANTEED SPACING FIX (move into style.css later if you want) -->
+  <!-- Optional: keep only if you haven't moved this spacing into style.css yet -->
   <style>
     body{
       padding-left: 4.25rem;
@@ -33,6 +33,7 @@
         <a href="#skills">Skills</a>
         <a href="#resume">Resume</a>
         <a href="#contact">Contact</a>
+        <a href="decision_tool.html">Decision Tool</a>
       </nav>
     </div>
   </header>
@@ -68,20 +69,23 @@
           </div>
         </article>
 
+        <!-- Replaced the upper-triangular matrix project with ChurnScope -->
         <article class="project">
           <div class="project-left">
-            <h3>Upper-Triangular Matrix Multiplication</h3>
-            <p class="meta">C++ • Memory Optimization</p>
+            <h3>ChurnScope</h3>
+            <p class="meta">Python • RandomForest • Decision Support • JavaScript</p>
           </div>
 
           <div class="project-right">
             <p>
-              Built a space-efficient multiplication routine for upper-triangular matrices without expanding
-              them into dense form, reducing memory overhead while preserving correctness.
+              Built an interactive churn decision-support tool that ranks customers by churn risk and converts model scores into
+              capacity-based outreach policies. Includes ROI modeling under configurable cost, churn loss, and campaign save-rate assumptions.
             </p>
 
             <div class="links">
-              <a href="#" target="_blank" rel="noopener">GitHub</a>
+              <a href="decision_tool.html" target="_blank" rel="noopener">Live demo ↗</a>
+              <span class="sep">/</span>
+              <a href="data/churn_scores.csv" target="_blank" rel="noopener">Scored data (CSV)</a>
             </div>
           </div>
         </article>
@@ -103,6 +107,7 @@
             <li>C / C++</li>
             <li>x86 Assembly (AT&amp;T syntax)</li>
             <li>HTML / CSS</li>
+            <li>JavaScript (product demos)</li>
           </ul>
         </div>
 
@@ -110,9 +115,10 @@
           <h3>ML</h3>
           <ul class="clean-list">
             <li>PyTorch</li>
+            <li>Scikit-learn (tabular modeling)</li>
             <li>Reinforcement learning (SARSA; Atari)</li>
-            <li>Experimentation &amp; evaluation</li>
-            <li>Linear algebra &amp; probability foundations</li>
+            <li>Experimentation &amp; evaluation (ROC-AUC, precision/recall)</li>
+            <li>Applied decision modeling (ROI, capacity policies)</li>
           </ul>
         </div>
 
@@ -144,7 +150,6 @@
     <section id="contact" class="section">
       <div class="section-head">
         <h2>Contact</h2>
-        
       </div>
 
       <p class="contact-line">

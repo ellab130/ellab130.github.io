@@ -20,22 +20,20 @@
 }
 
 /* =========================
-   Minimal editorial tokens
+   Design Tokens
    ========================= */
 :root{
-  --bg: #fcfaf4;               /* clean white */
+  --bg: #ffffff;
   --text: #111111;
-  --muted: #5f6368;            /* calm gray */
+  --muted: #5f6368;
   --faint: #8a8f98;
-
-  --rule: rgba(17,17,17,0.10); /* thin dividers */
-  --accent: #2D68C4;           /* your blue */
-
-  --max: 900px;
+  --rule: rgba(17,17,17,0.10);
+  --accent: #2D68C4;
+  --max: 920px;
 }
 
 /* =========================
-   Reset + base
+   Reset
    ========================= */
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -47,7 +45,7 @@ body{
   font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
   line-height: 1.7;
 
-  /* THIS is the guaranteed left/right margin */
+  /* CLEAN SIDE SPACING */
   padding-left: 4.25rem;
   padding-right: 4.25rem;
 
@@ -55,10 +53,12 @@ body{
   text-rendering: optimizeLegibility;
 }
 
+/* =========================
+   Layout Wrapper
+   ========================= */
 .container{
   max-width: var(--max);
-  margin: 1 auto;
-  padding: 0 4.25rem;
+  margin: 0 auto;   /* THIS centers properly */
 }
 
 /* =========================
@@ -70,7 +70,7 @@ body{
 }
 
 .site-header h1{
-  font-family: "Karrik", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  font-family: "Karrik", sans-serif;
   font-weight: 400;
   letter-spacing: -0.05em;
   font-size: clamp(2.5rem, 4vw, 3.25rem);
@@ -94,7 +94,7 @@ body{
   text-decoration: none;
   padding-bottom: 0.12rem;
   border-bottom: 1px solid rgba(45,104,196,0.25);
-  transition: border-color 160ms ease, color 160ms ease;
+  transition: 160ms ease;
   font-weight: 600;
   font-size: 0.95rem;
 }
@@ -118,23 +118,21 @@ body{
 
 .section-head{
   display: flex;
-  align-items: baseline;
   justify-content: space-between;
-  gap: 1rem;
+  align-items: baseline;
   margin-bottom: 1.2rem;
 }
 
 h2{
-  font-family: "Karrik", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  font-family: "Karrik", sans-serif;
   font-weight: 400;
-  letter-spacing: -0.02em;
   font-size: 1.35rem;
+  letter-spacing: -0.02em;
 }
 
 .section-note{
   color: var(--faint);
   font-size: 0.95rem;
-  text-align: right;
 }
 
 p{
@@ -143,7 +141,7 @@ p{
 }
 
 /* =========================
-   Links (editorial)
+   Links
    ========================= */
 a{
   color: var(--text);
@@ -159,52 +157,21 @@ a:hover{
   text-decoration-color: rgba(45,104,196,0.70);
 }
 
-.links{
-  margin-top: 0.85rem;
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 0.55rem;
-  color: var(--faint);
-}
-
-.sep{
-  color: var(--faint);
-  user-select: none;
-}
-
-/* Focus */
-a:focus-visible{
-  outline: 3px solid rgba(45, 104, 196, 0.20);
-  outline-offset: 3px;
-  border-radius: 10px;
-}
-
 /* =========================
-   Projects (no cards, columns)
+   Projects (editorial grid)
    ========================= */
-.project-list{
-  display: grid;
-  gap: 0;
-}
-
 .project{
-  padding: 1.35rem 0;
+  padding: 1.4rem 0;
   border-top: 1px solid var(--rule);
 }
 
 .project:first-child{
   border-top: none;
-  padding-top: 0.25rem;
-}
-
-.project{
-  display: grid;
-  gap: 1rem;
 }
 
 @media (min-width: 900px){
   .project{
+    display: grid;
     grid-template-columns: 280px 1fr;
     gap: 2rem;
   }
@@ -213,7 +180,6 @@ a:focus-visible{
 .project-left h3{
   font-size: 1.05rem;
   letter-spacing: -0.01em;
-  color: var(--text);
 }
 
 .meta{
@@ -222,35 +188,23 @@ a:focus-visible{
   font-size: 0.95rem;
 }
 
-.project-right p{
-  color: var(--muted);
-}
-
 /* =========================
-   Skills (clean columns)
+   Skills Layout
    ========================= */
 .two-col{
   display: grid;
-  gap: 1.25rem;
-  grid-template-columns: 1fr;
+  gap: 1.75rem;
 }
 
 @media (min-width: 900px){
   .two-col{
     grid-template-columns: repeat(3, 1fr);
-    gap: 1.75rem;
   }
 }
 
-
-
-
-
 .group h3{
-  font-size: 1.0rem;
-  color: var(--text);
+  font-size: 1rem;
   margin-bottom: 0.6rem;
-  letter-spacing: -0.01em;
 }
 
 .clean-list{
@@ -262,17 +216,11 @@ a:focus-visible{
 .clean-list li{
   color: var(--muted);
 }
-@media (max-width: 700px){
-  body{
-    padding-left: 1.25rem;
-    padding-right: 1.25rem;
-  }
-}
+
 /* =========================
    Contact
    ========================= */
 .contact-line{
-  margin-top: 0.15rem;
   font-size: 1.02rem;
 }
 
@@ -282,9 +230,15 @@ a:focus-visible{
 .site-footer{
   padding: 2.2rem 0 2.4rem;
   color: var(--faint);
+  font-size: 0.95rem;
 }
 
-.site-footer p{
-  color: var(--faint);
-  font-size: 0.95rem;
+/* =========================
+   Mobile Fix
+   ========================= */
+@media (max-width: 700px){
+  body{
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+  }
 }
