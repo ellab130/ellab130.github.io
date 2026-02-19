@@ -5,276 +5,333 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>ChurnScope | Decision Tool</title>
 
-  <!-- Reuse your main site CSS -->
   <link rel="stylesheet" href="style.css" />
 
-  <!-- Small page-specific tweaks (kept minimal) -->
   <style>
-    .tool-header {
-      margin-top: 1.25rem;
-    }
-    /* Nav spacing just for this page */
-    header nav {
-    margin-top: 1.4rem;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1.35rem;       /* bigger spacing */
-    }
+    /* Page uses your editorial theme; these are only tool-specific components */
+    .tool-header { margin-top: 1.25rem; }
 
-    header nav a {
-    padding-bottom: 0.18rem;
-    letter-spacing: 0.01em;
-    }
-
-    .tool-layout {
+    .tool-layout{
       display: grid;
       grid-template-columns: 1fr;
       gap: 1.25rem;
       margin-top: 1.25rem;
     }
-
-    @media (min-width: 980px) {
-      .tool-layout {
+    @media (min-width: 980px){
+      .tool-layout{
         grid-template-columns: 0.95fr 1.05fr;
         align-items: start;
       }
     }
 
-    .panel {
-      background: var(--surface, #F2F0EF);
-      border: 1px solid rgba(0,0,0,0.08);
+    .panel{
+      background: rgba(242,240,239,0.85);
+      border: 1px solid rgba(17,17,17,0.10);
       border-radius: 16px;
       padding: 1.25rem;
     }
 
-    .panel h3 {
-      margin-bottom: 0.75rem;
-      font-size: 1.1rem;
+    .panel h3{
+      margin-bottom: 0.8rem;
+      font-size: 1.05rem;
       letter-spacing: -0.01em;
+      color: var(--text);
     }
 
-    .form-grid {
-      display: grid;
-      gap: 0.9rem;
-    }
-
-    .field {
-      display: grid;
-      gap: 0.35rem;
-    }
-
-    .field label {
+    .hint{
       font-size: 0.92rem;
-      color: rgba(0,0,0,0.75);
+      color: var(--muted);
+      line-height: 1.45;
+      max-width: 80ch;
     }
 
-    .field input[type="number"],
-    .field input[type="text"] {
-      width: 100%;
-      padding: 0.65rem 0.7rem;
-      border-radius: 12px;
-      border: 1px solid rgba(0,0,0,0.12);
-      background: rgba(255,255,255,0.75);
-      outline: none;
-    }
-
-    .field input[type="range"] {
-      width: 100%;
-    }
-
-    .hint {
-      font-size: 0.9rem;
-      color: rgba(0,0,0,0.62);
-      line-height: 1.35;
-    }
-
-    .kpi-grid {
-      display: grid;
-      gap: 0.75rem;
-      grid-template-columns: 1fr 1fr;
-    }
-
-    @media (min-width: 520px) {
-      .kpi-grid {
-        grid-template-columns: 1fr 1fr 1fr 1fr;
-      }
-    }
-
-    .kpi {
-      padding: 0.9rem;
-      border-radius: 14px;
-      border: 1px solid rgba(0,0,0,0.08);
-      background: rgba(255,255,255,0.65);
-    }
-
-    .kpi .label {
-      font-size: 0.85rem;
-      color: rgba(0,0,0,0.65);
-      margin-bottom: 0.25rem;
-    }
-
-    .kpi .value {
-      font-size: 1.15rem;
-      font-weight: 700;
-      letter-spacing: -0.02em;
-    }
-
-    .mono {
+    .mono{
       font-variant-numeric: tabular-nums;
       font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
     }
 
-    .actions {
+    .form-grid{ display: grid; gap: 0.9rem; }
+    .field{ display: grid; gap: 0.35rem; }
+    .field label{
+      font-size: 0.92rem;
+      color: rgba(17,17,17,0.80);
+      font-weight: 600;
+    }
+    .field input[type="number"],
+    .field input[type="text"]{
+      width: 100%;
+      padding: 0.65rem 0.7rem;
+      border-radius: 12px;
+      border: 1px solid rgba(17,17,17,0.14);
+      background: rgba(255,255,255,0.75);
+      outline: none;
+    }
+    .field input[type="range"]{ width: 100%; }
+
+    .badge{
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      padding: 0.25rem 0.6rem;
+      border-radius: 999px;
+      font-size: 0.84rem;
+      border: 1px solid rgba(17,17,17,0.10);
+      background: rgba(255,255,255,0.70);
+      color: rgba(17,17,17,0.75);
+    }
+
+    .actions{
       display: flex;
       flex-wrap: wrap;
-      gap: 0.6rem;
-      margin-top: 0.9rem;
+      gap: 0.75rem;
+      margin-top: 0.85rem;
+      align-items: baseline;
     }
 
-    .linklike {
+    .linklike{
       display: inline-block;
       text-decoration: none;
-      color: var(--accent, #2D68C4);
+      color: var(--accent);
       border-bottom: 1px solid rgba(45,104,196,0.35);
       padding-bottom: 2px;
+      font-weight: 700;
+    }
+    .linklike:hover{ border-bottom-color: rgba(45,104,196,0.80); }
+
+    .presets{
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 0.75rem;
+    }
+    .chip{
+      display: inline-flex;
+      align-items: center;
+      border: 1px solid rgba(17,17,17,0.12);
+      background: rgba(255,255,255,0.65);
+      border-radius: 999px;
+      padding: 0.35rem 0.7rem;
+      font-size: 0.88rem;
+      font-weight: 700;
+      cursor: pointer;
+      user-select: none;
+    }
+    .chip:hover{ border-color: rgba(45,104,196,0.35); background: rgba(255,255,255,0.85); }
+
+    .kpi-grid{
+      display: grid;
+      gap: 0.75rem;
+      grid-template-columns: 1fr 1fr;
+    }
+    @media (min-width: 540px){
+      .kpi-grid{ grid-template-columns: 1fr 1fr 1fr 1fr; }
     }
 
-    .linklike:hover {
-      border-bottom-color: rgba(45,104,196,0.75);
+    .kpi{
+      padding: 0.9rem;
+      border-radius: 14px;
+      border: 1px solid rgba(17,17,17,0.10);
+      background: rgba(255,255,255,0.70);
+    }
+    .kpi .label{
+      font-size: 0.85rem;
+      color: rgba(17,17,17,0.68);
+      margin-bottom: 0.25rem;
+      font-weight: 700;
+    }
+    .kpi .value{
+      font-size: 1.1rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      color: var(--text);
     }
 
-    .table-wrap {
+    .summary{
+      display: grid;
+      gap: 0.7rem;
+      margin-top: 0.9rem;
+      padding-top: 0.9rem;
+      border-top: 1px solid rgba(17,17,17,0.10);
+    }
+    .summary strong{ color: var(--text); }
+    .summary-line{ color: var(--muted); }
+
+    .chart-wrap{
+      margin-top: 1rem;
+      padding: 0.9rem;
+      border-radius: 14px;
+      border: 1px solid rgba(17,17,17,0.10);
+      background: rgba(255,255,255,0.70);
+    }
+    canvas{ width: 100%; height: 220px; display: block; }
+
+    .table-wrap{
       margin-top: 1rem;
       overflow: auto;
       border-radius: 14px;
-      border: 1px solid rgba(0,0,0,0.08);
-      background: rgba(255,255,255,0.65);
+      border: 1px solid rgba(17,17,17,0.10);
+      background: rgba(255,255,255,0.70);
     }
-
-    table {
+    table{
       width: 100%;
       border-collapse: collapse;
-      min-width: 520px;
+      min-width: 560px;
     }
-
-    th, td {
+    th, td{
       padding: 0.7rem 0.8rem;
-      border-bottom: 1px solid rgba(0,0,0,0.06);
+      border-bottom: 1px solid rgba(17,17,17,0.06);
       text-align: left;
       font-size: 0.92rem;
+      color: var(--text);
     }
-
-    th {
-      font-weight: 700;
-      background: rgba(255,255,255,0.7);
+    th{
+      font-weight: 800;
+      background: rgba(255,255,255,0.8);
       position: sticky;
       top: 0;
     }
 
-    .badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.4rem;
-      padding: 0.25rem 0.55rem;
-      border-radius: 999px;
-      font-size: 0.84rem;
-      border: 1px solid rgba(0,0,0,0.10);
-      background: rgba(255,255,255,0.65);
-      color: rgba(0,0,0,0.72);
+    .callout{
+      margin-top: 1rem;
+      padding-top: 1rem;
+      border-top: 1px solid rgba(17,17,17,0.10);
     }
+
+    /* Slightly more spaced nav on this page */
+    header.site-header .site-nav { gap: 1.35rem; }
   </style>
 </head>
 
 <body>
-    <header class="site-header container">
+  <!-- Use same header classes as your home page so Karrik + spacing match -->
+  <header class="site-header container tool-header">
     <h1>ChurnScope</h1>
-    <p class="subtitle">
-    RandomForest churn model • ROC-AUC ≈ 0.68
-    </p>
-    <nav class="site-nav">
-        <a href="index.html">Home</a>
-        <a href="#tool">Decision</a>
-        <a href="#about">Method</a>
+    <p class="subtitle">Capacity-based retention targeting • business-focused decision support</p>
+
+    <nav class="site-nav" aria-label="Primary">
+      <a href="index.html">Home</a>
+      <a href="#tool">Decision</a>
+      <a href="#about">Method</a>
     </nav>
-    </header>
+  </header>
 
+  <main class="container" id="tool">
+    <section class="section">
+      <div class="section-head">
+        <h2>Decision Tool</h2>
+        <div class="section-note">
+          <span class="badge" id="dataCountBadge">Loading data…</span>
+        </div>
+      </div>
 
-  <main id="tool">
-    <section>
-      <h2>Decision Tool</h2>
       <p class="hint">
-        This simulator ranks customers by predicted churn risk and estimates <span class="mono">incremental ROI</span> for contacting the top N customers.
-        You can adjust costs and campaign effectiveness to explore operational tradeoffs.
+        This tool answers a business question: <strong>“Given limited outreach capacity, who should we contact to reduce churn, and is it worth it?”</strong>
+        It ranks customers by churn risk, simulates outreach, and estimates incremental ROI based on your assumptions.
       </p>
 
       <div class="tool-layout">
-        <!-- LEFT: Controls -->
-        <div class="panel">
+        <!-- LEFT: Inputs -->
+        <div class="panel" aria-label="Inputs panel">
           <h3>Inputs</h3>
 
           <div class="form-grid">
             <div class="field">
-              <label for="maxContacts">Outreach capacity (max contacts)</label>
+              <label for="maxContacts">Outreach capacity (max customers contacted)</label>
               <input id="maxContacts" type="range" min="100" max="5000" step="100" value="1000" />
               <div class="hint">
                 Selected: <span class="mono" id="maxContactsLabel">1000</span>
-                <span id="dataCountLabel" class="badge" style="margin-left:0.5rem;">Loading data…</span>
               </div>
             </div>
 
             <div class="field">
               <label for="contactCost">Contact cost ($ per customer)</label>
               <input id="contactCost" type="number" min="0" step="1" value="20" />
+              <div class="hint">Examples: call center time, discount offer cost, outreach ops cost.</div>
             </div>
 
             <div class="field">
-              <label for="churnLoss">Churn loss ($ value if churn happens)</label>
+              <label for="churnLoss">Churn loss ($ value at risk)</label>
               <input id="churnLoss" type="number" min="0" step="10" value="200" />
-              <div class="hint">Think “LTV at risk” or “expected revenue saved if retained.”</div>
+              <div class="hint">Think: expected revenue / LTV lost if the customer churns.</div>
             </div>
 
             <div class="field">
-              <label for="saveRate">Save rate (campaign effectiveness)</label>
+              <label for="saveRate">Save rate (campaign effectiveness, 0–1)</label>
               <input id="saveRate" type="number" min="0" max="1" step="0.01" value="0.25" />
-              <div class="hint">Probability that contacting a true churner prevents churn (0–1).</div>
+              <div class="hint">If you contact a true churner, what fraction will be retained?</div>
             </div>
+          </div>
+
+          <div class="presets" aria-label="Scenario presets">
+            <button class="chip" id="presetSaaS" type="button">Preset: SaaS email</button>
+            <button class="chip" id="presetTelecom" type="button">Preset: Telecom call</button>
+            <button class="chip" id="presetBank" type="button">Preset: Bank retention</button>
           </div>
 
           <div class="actions">
             <a class="linklike" href="#" id="downloadBtn">Download contact list (CSV)</a>
-            <a class="linklike" href="data/churn_scores.csv" target="_blank" rel="noopener">View data file</a>
+            <a class="linklike" href="data/churn_scores.csv" target="_blank" rel="noopener">View scored data</a>
           </div>
 
-          <p class="hint" style="margin-top:0.9rem;">
-            Profit model (incremental): <span class="mono">TP × (save_rate × churn_loss) − contacts × contact_cost</span>.
-            If the CSV includes <span class="mono">actual_churn</span>, the tool will also estimate precision/recall.
-          </p>
+          <div class="callout">
+            <p class="hint">
+              Profit model (incremental):
+              <span class="mono">profit = expected_TP × (save_rate × churn_loss) − contacts × contact_cost</span>.
+              If your CSV includes <span class="mono">actual_churn</span>, the tool also reports estimated precision/recall.
+            </p>
+          </div>
         </div>
 
         <!-- RIGHT: Outputs -->
-        <div class="panel">
-          <h3>Outputs</h3>
+        <div class="panel" aria-label="Outputs panel">
+          <h3>Business Summary</h3>
 
-          <div class="kpi-grid">
+          <div class="kpi-grid" aria-label="Key metrics">
             <div class="kpi">
               <div class="label">Estimated profit</div>
               <div class="value mono" id="profitValue">—</div>
             </div>
-
             <div class="kpi">
-              <div class="label">Contacts</div>
-              <div class="value mono" id="contactsValue">—</div>
+              <div class="label">Total outreach cost</div>
+              <div class="value mono" id="costValue">—</div>
             </div>
-
             <div class="kpi">
-              <div class="label">Precision</div>
-              <div class="value mono" id="precisionValue">—</div>
+              <div class="label">ROI (profit / cost)</div>
+              <div class="value mono" id="roiValue">—</div>
             </div>
-
             <div class="kpi">
-              <div class="label">Recall</div>
-              <div class="value mono" id="recallValue">—</div>
+              <div class="label">Break-even save rate</div>
+              <div class="value mono" id="breakevenValue">—</div>
             </div>
+          </div>
+
+          <div class="summary" aria-label="Executive summary">
+            <div class="summary-line" id="execSummary">—</div>
+            <div class="summary-line" id="execSummary2">—</div>
+            <div class="summary-line hint" id="execCaveat">—</div>
+          </div>
+
+          <div class="chart-wrap" aria-label="Capacity profit chart">
+            <div class="hint" style="margin-bottom:0.6rem;">
+              Capacity → profit (model ranking) on this scored dataset
+            </div>
+            <canvas id="profitChart" width="900" height="260"></canvas>
+          </div>
+
+          <div class="table-wrap" aria-label="Strategy comparison">
+            <table>
+              <thead>
+                <tr>
+                  <th>Strategy</th>
+                  <th>Contacts</th>
+                  <th>Expected TP</th>
+                  <th>Estimated profit</th>
+                </tr>
+              </thead>
+              <tbody id="compareTbody">
+                <tr><td colspan="4">Loading…</td></tr>
+              </tbody>
+            </table>
           </div>
 
           <div class="table-wrap" aria-label="Top targets preview">
@@ -294,82 +351,72 @@
           </div>
 
           <p class="hint" style="margin-top:0.8rem;">
-            Preview shows top 25 by risk. Download contains the full top-N list.
+            Preview shows top 25. Download exports the full top-N contact list.
           </p>
+
+          <div class="callout">
+            <h3 style="margin-bottom:0.55rem;">Interpretation</h3>
+            <p class="hint" id="interpretation">—</p>
+          </div>
         </div>
       </div>
     </section>
 
-    <section id="about">
-  <h2>Method</h2>
+    <section id="about" class="section">
+      <div class="section-head">
+        <h2>Method</h2>
+      </div>
 
-  <p class="hint">
-    ChurnScope is a small decision-support demo built around a churn risk model.
-    The goal is not just “predict churn,” but to turn predictions into an operational policy:
-    <em>who should we contact when outreach capacity is limited?</em>
-  </p>
-
-  <div class="tool-layout" style="margin-top: 1rem;">
-    <div class="panel">
-      <h3>1) Model (offline)</h3>
       <p class="hint">
-        I trained a RandomForest churn model in Python and used it to generate a scored hold-out test set.
-        Each customer receives a <span class="mono">churn_probability</span> between 0 and 1.
-        The web demo loads a static CSV of these scores so it can run on GitHub Pages with no backend.
+        ChurnScope is designed to be understandable in business terms: it links model scores to an actionable outreach policy under budget constraints.
       </p>
-      <p class="hint" style="margin-top:0.6rem;">
-        Why RandomForest? It’s a strong baseline for mixed tabular features and works well without deep feature engineering.
-        (This project can later be extended with calibrated probabilities, gradient boosting, and richer feature work.)
-      </p>
-    </div>
 
-    <div class="panel">
-      <h3>2) Policy (online)</h3>
-      <p class="hint">
-        The decision rule is capacity-based targeting:
-        sort customers by churn probability (highest to lowest), then contact the top N customers where
-        <span class="mono">N = outreach capacity</span>.
-      </p>
-      <p class="hint" style="margin-top:0.6rem;">
-        This mirrors a real retention workflow: a team has limited budget/time, so the model is used primarily as a ranking tool.
-        The tool previews the top targets and lets you export the contact list as a CSV.
-      </p>
-    </div>
+      <div class="tool-layout" style="margin-top:1rem;">
+        <div class="panel">
+          <h3>1) Scoring customers (offline)</h3>
+          <p class="hint">
+            A churn model is trained offline in Python on tabular customer features and used to generate a <span class="mono">churn_probability</span> score per customer.
+            These scores are exported to a CSV, which keeps the website deployable on GitHub Pages (no server).
+          </p>
+        </div>
 
-    <div class="panel">
-      <h3>3) Economics (decision support)</h3>
-      <p class="hint">
-        Predictions only matter if the intervention is worth it. The simulator uses an incremental ROI model:
-      </p>
-      <p class="hint mono" style="margin-top:0.5rem;">
-        profit = TP × (save_rate × churn_loss) − contacts × contact_cost
-      </p>
-      <p class="hint" style="margin-top:0.6rem;">
-        This is incremental value relative to “do nothing.” We don’t penalize customers we didn’t contact;
-        instead, we estimate how much value we recover by saving a fraction of true churners through outreach.
-      </p>
-    </div>
+        <div class="panel">
+          <h3>2) Turning scores into an outreach policy</h3>
+          <p class="hint">
+            Most retention teams can’t contact everyone. The tool uses <strong>capacity-based targeting</strong>:
+            rank customers by churn risk and contact the top N customers, where N is your outreach capacity.
+            This matches how real teams operate (call centers, success teams, campaigns with limited budget).
+          </p>
+        </div>
 
-    <div class="panel">
-      <h3>4) What to look for</h3>
-      <ul class="hint" style="margin-top:0.5rem; padding-left: 1.05rem;">
-        <li><span class="mono">Capacity</span>: low N favors precision; high N increases coverage but adds cost.</li>
-        <li><span class="mono">Contact cost</span>: phone calls vs. emails can completely change ROI.</li>
-        <li><span class="mono">Save rate</span>: campaign effectiveness determines whether targeting pays off.</li>
-        <li><span class="mono">Churn loss</span>: higher LTV at risk increases the value of saving churners.</li>
-      </ul>
-      <p class="hint" style="margin-top:0.6rem;">
-        A good outcome is a clear “operating point” (a capacity or threshold) where profit is maximized and the policy is practical.
+        <div class="panel">
+          <h3>3) Measuring impact with unit economics</h3>
+          <p class="hint">
+            Accuracy alone doesn’t tell you whether an intervention is worth running. ChurnScope estimates incremental profit using:
+            <span class="mono">profit = expected_TP × (save_rate × churn_loss) − contacts × contact_cost</span>.
+            This reframes ML as a decision: “does outreach pay for itself under realistic assumptions?”
+          </p>
+        </div>
+
+        <div class="panel">
+          <h3>4) What a business user should take away</h3>
+          <p class="hint">
+            The goal is to identify an <strong>operating point</strong>: a capacity (or threshold) where ROI is maximized and the policy is practical.
+            You can explore sensitivity to cost and effectiveness and export a prioritized target list.
+          </p>
+        </div>
+      </div>
+
+      <p class="hint" style="margin-top:1rem;">
+        Implementation note: all policy math runs client-side in JavaScript using the scored CSV, making it easy to share and demo without infrastructure.
       </p>
-    </div>
-  </div>
-
-
-
+    </section>
   </main>
 
-  <footer>
-    <p>© 2026 Ella Bourassa</p>
+  <footer class="site-footer">
+    <div class="container">
+      <p>© 2026 Ella Bourassa</p>
+    </div>
   </footer>
 
   <script src="decision_tool.js"></script>
